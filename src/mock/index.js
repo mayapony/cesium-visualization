@@ -5,6 +5,9 @@ export const points = [
       lat: 31.288817,
       height: 20,
     },
+    temp: 20,
+    humidity: 20,
+    ph: 8,
   },
   {
     pos: {
@@ -12,5 +15,8 @@ export const points = [
       lat: 31.288817,
       height: 20,
     },
+    temp: 20,
+    humidity: 20,
+    ph: 8,
   },
 ]
