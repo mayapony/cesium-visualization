@@ -1,6 +1,7 @@
 <script setup>
 import InfoBox from "../components/InfoBox.vue";
 import Echarts from '../components/Echarts.vue'
+import DataTable from "../components/DataTable.vue";
 import {onMounted, ref} from 'vue'
 import moment from 'moment'
 
@@ -25,7 +26,7 @@ export default {
 <template>
   <div id="main-container">
     <div class="container-header">
-      <div></div>
+      <div class="time" style="padding-right: 20px; visibility: hidden">{{ timeRef }}</div>
       <h1 id="title">卫星监管一体化系统</h1>
       <div class="time" style="padding-right: 20px;">{{ timeRef }}</div>
     </div>
@@ -46,7 +47,9 @@ export default {
         </div>
         <iframe id="earth-iframe" src="http://localhost:3000/#/earth"></iframe>
       </div>
-      <div class="right-container"></div>
+      <div class="right-container">
+        <data-table/>
+      </div>
     </div>
   </div>
 </template>
