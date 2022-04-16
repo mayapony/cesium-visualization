@@ -9,12 +9,13 @@ import 'vue-cesium/dist/index.css'
 
 import { CanvasRenderer } from 'echarts/renderers'
 import { BarChart } from 'echarts/charts'
-import { GridComponent, TooltipComponent } from 'echarts/components'
 
-use([CanvasRenderer, BarChart, GridComponent, TooltipComponent])
+use([CanvasRenderer, BarChart])
 
 const app = createApp(App)
+
 app.component('v-chart', ECharts)
+
 app.use(VueCesium)
 app.use(router)
 

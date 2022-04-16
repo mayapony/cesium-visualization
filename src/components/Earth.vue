@@ -1,8 +1,7 @@
 <script setup>
-import {onMounted, reactive} from 'vue'
-import {points} from '../mock'
+import { onMounted, reactive } from 'vue'
+import { points } from '../mock'
 
-const cesiumPath = new URL('../assets/js/Cesium.js', import.meta.url).href
 const state = reactive({
   pointsReact: [],
   isReady: false,
@@ -26,11 +25,10 @@ const handleClickEntity = index => {
 
 const customAPI = () => {
   state.isLocate = true
-  return {lng: 118.385422, lat: 31.288817}
+  return { lng: 118.385422, lat: 31.288817 }
 }
 
-onMounted(() => {
-})
+onMounted(() => {})
 </script>
 <script>
 export default {
@@ -44,18 +42,18 @@ export default {
       <vc-viewer ref="vcViewer" @ready="onViewReady" style="height: 100vh">
         <vc-layer-imagery>
           <vc-imagery-provider-bing
-              ref="provider"
-              bm-key="As2cU6j25iheYLs88Eh2sBBY8QYetjs19BfyAACrmYTVzuVV38zHEopHKUTJI5sP"
+            ref="provider"
+            bm-key="As2cU6j25iheYLs88Eh2sBBY8QYetjs19BfyAACrmYTVzuVV38zHEopHKUTJI5sP"
           >
           </vc-imagery-provider-bing>
         </vc-layer-imagery>
         <vc-my-location
-            style="margin-bottom: 20px"
-            position="bottom-right"
-            :offset="[60, 0]"
-            :custom-a-p-i="customAPI"
-            animation
-            :pixelSize="0"
+          style="margin-bottom: 20px"
+          position="bottom-right"
+          :offset="[60, 0]"
+          :custom-a-p-i="customAPI"
+          animation
+          :pixelSize="0"
         />
         <template v-for="(point, index) in state.pointsReact" :key="index">
           <vc-overlay-html ref="html" :position="[point.pos.lng, point.pos.lat, point.pos.height]">
@@ -68,8 +66,8 @@ export default {
             </div>
           </vc-overlay-html>
           <vc-entity
-              :position="[point.pos.lng, point.pos.lat, point.pos.height]"
-              @click="handleClickEntity(index)"
+            :position="[point.pos.lng, point.pos.lat, point.pos.height]"
+            @click="handleClickEntity(index)"
           >
             <vc-graphics-point color="red" :pixel-size="8"></vc-graphics-point>
           </vc-entity>

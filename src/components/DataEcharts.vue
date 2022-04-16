@@ -1,13 +1,6 @@
 <template>
   <figure>
-    <v-chart
-      :option="bar"
-      ref="bar"
-      autoresize
-      :loadingOptions="barLoadingOptions"
-      @zr:click="handleZrClick"
-      @click="handleClick"
-    />
+    <v-chart :option="bar" autoresize @zr:click="handleZrClick" @click="handleClick" />
   </figure>
 </template>
 
@@ -22,7 +15,6 @@ function random() {
   return Math.round(200 + Math.random() * 700) / 10
 }
 
-let barLoadingRef = ref(false)
 const barLoadingOptions = {
   text: 'Loading…',
   color: '#4ea397',
@@ -73,7 +65,7 @@ const handleClick = () => {}
 
 <script>
 export default {
-  name: 'Echarts',
+  name: 'DataEcharts',
 }
 </script>
 
