@@ -5,9 +5,9 @@
     <thead>
     <tr>
       <th>检测点</th>
-      <th>PH值</th>
-      <th>温度</th>
-      <th>湿度</th>
+      <th>一氧化碳浓度(PPM)</th>
+      <th>二氧化碳浓度(PPM)</th>
+      <th>氧气(PPM)</th>
     </tr>
     </thead>
 
@@ -15,8 +15,8 @@
     <tr v-for="data in tableData" :key="data.name">
       <td>{{ data.name }}</td>
       <td>{{ data.ph }}</td>
-      <td>{{ data.temp }}°C</td>
-      <td>{{ data.humidity }}%</td>
+      <td>{{ data.temp }}</td>
+      <td>{{ data.humidity }}</td>
     </tr>
     </tbody>
   </table>

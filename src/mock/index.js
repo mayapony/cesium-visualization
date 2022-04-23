@@ -1,11 +1,11 @@
 export const randomData = flag => {
   switch (flag) {
     case 'ph':
-      return Math.round(45 + Math.random() * 30) / 10
+      return Math.round(Math.random() * 24) / 10
     case 'temp':
-      return Math.round(150 + Math.random() * 100) / 10
+      return Math.round(5000 + Math.random() * 2000) / 10
     case 'humidity':
-      return Math.round(1 + Math.random() * 4)
+      return Math.round(80 + Math.random() * 20) / 10
   }
 }
 

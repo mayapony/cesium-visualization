@@ -72,9 +72,9 @@ export default {
           <vc-overlay-html ref="html" :position="[point.pos.lng, point.pos.lat, point.pos.height]">
             <div class="vc-box" v-if="state.isReady && state.isLocate">
               <div class="info-box">
-                <p>温度：{{ point.temp }}°C</p>
-                <p>湿度：{{ point.humidity }}%</p>
-                <p>PH: {{ point.ph }}</p>
+                <p>一氧化碳浓度：{{ point.humidity }}PPM</p>
+                <p>二氧化碳浓度：{{ point.temp }}PPM</p>
+                <p>氧气浓度: {{ point.ph }}PPM</p>
               </div>
             </div>
           </vc-overlay-html>

@@ -27,25 +27,25 @@ export default {
   <div id="main-container">
     <div class="container-header">
       <div class="time" style="padding-right: 20px; visibility: hidden">{{ timeRef }}</div>
-      <h1 id="title">守护稷黍—水稻病虫害及其生长环境的智能监测服务商</h1>
+      <h1 id="title">城市园区碳中和监测系统</h1>
       <div class="time" style="padding-right: 20px">{{ timeRef }}</div>
     </div>
     <div class="container-content">
       <div class="left-container">
-        <DataEcharts titleText="温度(°C)" flag="temp" color="#6C90FF"/>
-        <DataEcharts titleText="PH值" flag="ph" color="#91CC75"/>
-        <DataEcharts titleText="湿度(%)" flag="humidity" color="#EE6666"/>
+        <DataEcharts titleText="一氧化碳浓度(PPM)" flag="ph" color="#6C90FF"/>
+        <DataEcharts titleText="二氧化碳浓度(PPM)" flag="temp" color="#91CC75"/>
+        <DataEcharts titleText="氧气浓度(PPM)" flag="humidity" color="#EE6666"/>
       </div>
       <div class="center-container">
         <div class="infos">
           <h1 class="info-header">检测值告警点️</h1>
           <div class="info-boxes">
-            <InfoBox boxText="PH"/>
-            <InfoBox boxText="温度"/>
-            <InfoBox boxText="湿度"/>
+            <InfoBox boxText="一氧化碳浓度(PPM)"/>
+            <InfoBox boxText="二氧化碳浓度(PPM)"/>
+            <InfoBox boxText="氧气浓度(PPM)"/>
           </div>
         </div>
-        <iframe id="earth-iframe" src="http://demo.mayapony.site/#/earth"></iframe>
+        <iframe id="earth-iframe" src="http://city.mayapony.site/#/earth"></iframe>
       </div>
       <div class="right-container">
         <data-table/>
