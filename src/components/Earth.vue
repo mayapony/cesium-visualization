@@ -1,6 +1,6 @@
 <script setup>
-import { onMounted, reactive } from 'vue'
-import { points } from '../mock'
+import {onMounted, reactive} from 'vue'
+import {points, randomData} from '../mock'
 
 const state = reactive({
   pointsReact: [],
@@ -13,10 +13,16 @@ const onViewReady = () => {
   state.isReady = true
   state.pointsReact = points
   setInterval(() => {
-    state.pointsReact[0].pos.lat += 0.00001
-    state.pointsReact[0].ph += 1
-    state.pointsReact[1].temp += 1
-  }, 500)
+    state.pointsReact[0].pos.lat += 0.000005
+
+    state.pointsReact[0].ph = randomData('ph')
+    state.pointsReact[0].temp = randomData('temp')
+    state.pointsReact[0].humidity = randomData('humidity')
+
+    state.pointsReact[1].temp = randomData('temp')
+    state.pointsReact[1].ph = 10.4
+    state.pointsReact[1].humidity = randomData('humidity')
+  }, 1000)
 }
 
 const handleClickEntity = index => {
@@ -24,11 +30,14 @@ const handleClickEntity = index => {
 }
 
 const customAPI = () => {
-  state.isLocate = true
-  return { lng: 118.385422, lat: 31.288817 }
+  setTimeout(() => {
+    state.isLocate = true
+  }, 2000)
+  return {lng: 118.385422, lat: 31.288817}
 }
 
-onMounted(() => {})
+onMounted(() => {
+})
 </script>
 <script>
 export default {
@@ -42,32 +51,36 @@ export default {
       <vc-viewer ref="vcViewer" @ready="onViewReady" style="height: 100vh">
         <vc-layer-imagery>
           <vc-imagery-provider-bing
-            ref="provider"
-            bm-key="As2cU6j25iheYLs88Eh2sBBY8QYetjs19BfyAACrmYTVzuVV38zHEopHKUTJI5sP"
+              ref="provider"
+              bm-key="As2cU6j25iheYLs88Eh2sBBY8QYetjs19BfyAACrmYTVzuVV38zHEopHKUTJI5sP"
           >
           </vc-imagery-provider-bing>
         </vc-layer-imagery>
         <vc-my-location
-          style="margin-bottom: 20px"
-          position="bottom-right"
-          :offset="[60, 0]"
-          :custom-a-p-i="customAPI"
-          animation
-          :pixelSize="0"
+            style="margin-bottom: 20px"
+            position="bottom-right"
+            :offset="[60, 0]"
+            :custom-a-p-i="customAPI"
+            animation
+            :pixelSize="0"
+        />
+        <vc-zoom-control
+            style="margin-right: 10px;"
+            position="right"
         />
         <template v-for="(point, index) in state.pointsReact" :key="index">
           <vc-overlay-html ref="html" :position="[point.pos.lng, point.pos.lat, point.pos.height]">
             <div class="vc-box" v-if="state.isReady && state.isLocate">
-              <ul>
-                <li>温度：{{ point.temp }}</li>
-                <li>湿度：{{ point.humidity }}</li>
-                <li>PH: {{ point.ph }}</li>
-              </ul>
+              <div class="info-box">
+                <p>温度：{{ point.temp }}°C</p>
+                <p>湿度：{{ point.humidity }}%</p>
+                <p>PH: {{ point.ph }}</p>
+              </div>
             </div>
           </vc-overlay-html>
           <vc-entity
-            :position="[point.pos.lng, point.pos.lat, point.pos.height]"
-            @click="handleClickEntity(index)"
+              :position="[point.pos.lng, point.pos.lat, point.pos.height]"
+              @click="handleClickEntity(index)"
           >
             <vc-graphics-point color="red" :pixel-size="8"></vc-graphics-point>
           </vc-entity>
@@ -82,6 +95,17 @@ export default {
   background-color: rgba(0, 0, 0, 0.7);
   color: white;
   padding: 2px 10px 2px 0;
+}
+
+.info-box {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.info-box p {
+  margin: 0;
+  font-size: 20px;
 }
 
 body {

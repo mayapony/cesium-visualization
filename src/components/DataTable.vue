@@ -15,26 +15,8 @@
     <tr v-for="data in tableData" :key="data.name">
       <td>{{ data.name }}</td>
       <td>{{ data.ph }}</td>
-      <td>{{ data.temp }}</td>
-      <td>{{ data.humidity }}</td>
-    </tr>
-    <tr v-for="data in tableData" :key="data.name">
-      <td>{{ data.name }}</td>
-      <td>{{ data.ph }}</td>
-      <td>{{ data.temp }}</td>
-      <td>{{ data.humidity }}</td>
-    </tr>
-    <tr v-for="data in tableData" :key="data.name">
-      <td>{{ data.name }}</td>
-      <td>{{ data.ph }}</td>
-      <td>{{ data.temp }}</td>
-      <td>{{ data.humidity }}</td>
-    </tr>
-    <tr v-for="data in tableData" :key="data.name">
-      <td>{{ data.name }}</td>
-      <td>{{ data.ph }}</td>
-      <td>{{ data.temp }}</td>
-      <td>{{ data.humidity }}</td>
+      <td>{{ data.temp }}°C</td>
+      <td>{{ data.humidity }}%</td>
     </tr>
     </tbody>
   </table>
@@ -42,48 +24,17 @@
 </template>
 
 <script setup>
-function random() {
-  return Math.round(200 + Math.random() * 700) / 10
-}
+import {randomData} from "../mock";
 
-const tableData = [
-  {
-    name: '检测点1',
-    ph: random(),
-    temp: random(),
-    humidity: random()
-  },
-  {
-    name: '检测点2',
-    ph: random(),
-    temp: random(),
-    humidity: random()
-  },
-  {
-    name: '检测点3',
-    ph: random(),
-    temp: random(),
-    humidity: random()
-  },
-  {
-    name: '检测点4',
-    ph: random(),
-    temp: random(),
-    humidity: random()
-  },
-  {
-    name: '检测点5',
-    ph: random(),
-    temp: random(),
-    humidity: random()
-  },
-  {
-    name: '检测点6',
-    ph: random(),
-    temp: random(),
-    humidity: random()
-  },
-]
+const tableData = Array.from(new Array(50), (val, index) => {
+  return {
+    name: '检测点' + (index + 1),
+    ph: randomData('ph'),
+    temp: randomData('temp'),
+    humidity: randomData('humidity')
+  }
+})
+
 </script>
 <script>
 export default {
@@ -102,13 +53,16 @@ table
   ::-webkit-scrollbar
     display: none
 
+  caption
+    margin-bottom: 5px
+
   thead
     width: 100%
     display: block
 
   tbody
     width: 100%
-    height: calc(100vh - 200px)
+    height: calc(100vh - 220px)
     overflow-y: scroll
     -ms-overflow-style: none
     display: block

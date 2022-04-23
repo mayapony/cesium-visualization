@@ -1,25 +1,30 @@
 <template>
   <figure>
-    <v-chart :option="bar" autoresize @zr:click="handleZrClick" @click="handleClick" />
+    <v-chart :option="bar" autoresize @zr:click="handleZrClick" @click="handleClick"/>
   </figure>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import {randomData} from "../mock";
+
 const props = defineProps({
   titleText: {
     type: String,
   },
+  flag: {
+    type: String,
+  },
+  color: {
+    type: String
+  }
 })
-function random() {
-  return Math.round(200 + Math.random() * 700) / 10
-}
 
 const barLoadingOptions = {
   text: 'Loading…',
-  color: '#4ea397',
+  color: '#1890ff',
   maskColor: 'rgba(255, 255, 255, 0.4)',
 }
+
 const bar = {
   title: {
     show: true,
@@ -33,14 +38,12 @@ const bar = {
   },
   xAxis: {
     type: 'category',
-    data: ['检测点1', '检测点2', '检测点3', '检测点4', '检测点5', '检测点6'],
+    data: Array.from(new Array(30)).map((_, i) => `检测点${i + 1}`),
   },
-  yAxis: { type: 'value' },
-  // Declare several bar series, each will be mapped
-  // to a column of dataset.source by default.
+  yAxis: {type: 'value'},
   series: [
     {
-      data: [random(), random(), random(), random(), random(), random()],
+      data: Array.from(new Array(30), () => randomData(props.flag)),
       type: 'bar',
       showBackground: true,
       backgroundStyle: {
@@ -56,11 +59,14 @@ const bar = {
     start: 20, // 表示默认展示20%～80%这一段。
     end: 80,
   },
+  color: props.color
 }
 
-const handleZrClick = () => {}
+const handleZrClick = () => {
+}
 
-const handleClick = () => {}
+const handleClick = () => {
+}
 </script>
 
 <script>
@@ -78,6 +84,7 @@ figure {
   box-shadow: 0 0 45px rgba(0, 0, 0, 0.2);
   width: 100%;
 }
+
 .echarts {
   width: 100%;
   height: calc((100vh - 80px - 60px - 60px) / 3);

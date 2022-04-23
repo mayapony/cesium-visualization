@@ -2,7 +2,7 @@
 import InfoBox from '../components/InfoBox.vue'
 import DataEcharts from '../components/DataEcharts.vue'
 import DataTable from '../components/DataTable.vue'
-import { onMounted, ref } from 'vue'
+import {onMounted, ref} from 'vue'
 import moment from 'moment'
 
 let timeRef = ref(moment().format('YYYY-MM-DD HH:mm:ss'))
@@ -32,23 +32,23 @@ export default {
     </div>
     <div class="container-content">
       <div class="left-container">
-        <DataEcharts titleText="温度"></DataEcharts>
-        <DataEcharts titleText="PH值"></DataEcharts>
-        <DataEcharts titleText="湿度"></DataEcharts>
+        <DataEcharts titleText="温度(°C)" flag="temp" color="#6C90FF"/>
+        <DataEcharts titleText="PH值" flag="ph" color="#91CC75"/>
+        <DataEcharts titleText="湿度(%)" flag="humidity" color="#EE6666"/>
       </div>
       <div class="center-container">
         <div class="infos">
           <h1 class="info-header">检测值告警点️</h1>
           <div class="info-boxes">
-            <InfoBox boxText="PH" />
-            <InfoBox boxText="温度" />
-            <InfoBox boxText="湿度" />
+            <InfoBox boxText="PH"/>
+            <InfoBox boxText="温度"/>
+            <InfoBox boxText="湿度"/>
           </div>
         </div>
         <iframe id="earth-iframe" src="http://demo.mayapony.site/#/earth"></iframe>
       </div>
       <div class="right-container">
-        <data-table />
+        <data-table/>
       </div>
     </div>
   </div>
@@ -70,6 +70,7 @@ export default {
   align-items: center
   justify-content: space-between
   font-size: 1.5rem
+
   .time
     font-size: 1rem
 
