@@ -27,7 +27,7 @@ export default {
   <div id="main-container">
     <div class="container-header">
       <div class="time" style="padding-right: 20px; visibility: hidden">{{ timeRef }}</div>
-      <h1 id="title">守护稷黍—水稻病虫害及其生长环境的智能监测服务商</h1>
+      <h1 id="title">稻田守护者—水稻病虫害及其生长环境的智能监测服务商</h1>
       <div class="time" style="padding-right: 20px">{{ timeRef }}</div>
     </div>
     <div class="container-content">
