@@ -1,10 +1,12 @@
 <script setup>
 import {defineProps} from 'vue'
 
-let number = Math.floor(Math.random() * 100)
 const props = defineProps({
   boxText: {
     type: String
+  },
+  number: {
+    required: true
   }
 })
 </script>

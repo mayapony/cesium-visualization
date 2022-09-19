@@ -12,8 +12,8 @@
     </thead>
 
     <tbody>
-    <tr v-for="data in tableData" :key="data.name">
-      <td>{{ data.name }}</td>
+    <tr v-for="(data, index) in tableData" :key="data.name">
+      <td>检测点{{ index }}</td>
       <td>{{ data.ph }}</td>
       <td>{{ data.temp }}°C</td>
       <td>{{ data.humidity }}%</td>
@@ -24,14 +24,10 @@
 </template>
 
 <script setup>
-import {randomData} from "../mock";
 
-const tableData = Array.from(new Array(50), (val, index) => {
-  return {
-    name: '检测点' + (index + 1),
-    ph: randomData('ph'),
-    temp: randomData('temp'),
-    humidity: randomData('humidity')
+const props = defineProps({
+  tableData: {
+    required: true
   }
 })
 

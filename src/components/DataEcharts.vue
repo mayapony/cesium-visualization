@@ -1,11 +1,12 @@
 <template>
   <figure>
-    <v-chart :option="bar" autoresize @zr:click="handleZrClick" @click="handleClick"/>
+    <v-chart ref="vChart" :option="bar" autoresize @zr:click="handleZrClick" @click="handleClick"/>
   </figure>
 </template>
 
 <script setup>
-import {randomData} from "../mock";
+
+import {reactive} from "vue";
 
 const props = defineProps({
   titleText: {
@@ -16,6 +17,12 @@ const props = defineProps({
   },
   color: {
     type: String
+  },
+  data: {
+    required: true
+  },
+  xAxisData: {
+    required: true
   }
 })
 
@@ -25,7 +32,7 @@ const barLoadingOptions = {
   maskColor: 'rgba(255, 255, 255, 0.4)',
 }
 
-const bar = {
+const bar = reactive({
   title: {
     show: true,
     text: props.titleText,
@@ -38,12 +45,13 @@ const bar = {
   },
   xAxis: {
     type: 'category',
-    data: Array.from(new Array(30)).map((_, i) => `检测点${i + 1}`),
+    // data: Array.from(new Array(props.data.length)).map((_, i) => `检测点${i + 1}`),
+    data: props.xAxisData
   },
   yAxis: {type: 'value'},
   series: [
     {
-      data: Array.from(new Array(30), () => randomData(props.flag)),
+      data: props.data,
       type: 'bar',
       showBackground: true,
       backgroundStyle: {
@@ -60,7 +68,7 @@ const bar = {
     end: 80,
   },
   color: props.color
-}
+})
 
 const handleZrClick = () => {
 }
